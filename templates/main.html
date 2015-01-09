@@ -2,11 +2,24 @@
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <html>
 <head>
-	<title>Surf Check!!!!!</title>
+<title>Surf Check!!!!!</title>
 </head>
 <body>
-<h1>Surf Check ;)</h1>
-<p> ----------------------------------------- </p>
+<h1>Surf Check - Hell Yeah!!!!</h1>
+<p>--------------------------------------------</p>
 <p> Norcal Surf is always epic, get out there </p>
+<p>--------------------------------------------</p>
+{% for spot in spots %}
+	<div>
+	<h2>Swell Rerport for BlahBlahBlah</h2>
+	<p>---------------------------------------------</p>
+	<p>Day		AM 		PM</p>
+	<p>---------------------------------------------</p>
+	{% for line in spot %}
+	<p>{{ line }}</p>
+	{% endfor %}
+	</div><br>
+{% endfor %}
+<p> Last update: {{ last_update }}
 </body>
 </html>
