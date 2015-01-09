@@ -1,7 +1,6 @@
 import urllib2
 from bs4 import BeautifulSoup
 
-class daily_
 
 def parse_cond_attr(attribute):
     """ Parses the class attribute to get condition value """
@@ -28,34 +27,33 @@ def url_to_data(address):
         am_cond = parse_cond_attr(condition.get("class")[1])
         tds = condition.findAll("td")
         pm_cond = parse_cond_attr(tds[1].get("class")[0])
-        am_hieght = tds[0].contents[0]
-        pm_hieght = tds[1].contents[0]
-        conditions.append([day am_cond + am_hieght + pm_cond + pm_hieght)
+        am_swell = tds[0].contents[0]
+        pm_swell = tds[1].contents[0]
+        if day in ["Saturday", "Tuesday", "Wednesday"]:
+            cond_str = (day + ":\t" + am_swell + " " + am_cond + "\t" + 
+                        pm_swell + " " + pm_cond)
+        else:
+            cond_str = (day + ":\t\t" + am_swell + " " + am_cond + "\t" + 
+                        pm_swell + " " + pm_cond)
+        conditions.append(cond_str)
     return conditions
 
 
+def run_scraper():
+    surf_spots = ['http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw',
+                  'http://www.swellinfo.com/surf-forecast/ocean-beach-california',
+                  'http://www.swellinfo.com/surf-forecast/half-moon-bay-california',
+                  'http://www.swellinfo.com/surf-forecast/pescadero-california',
+                  'http://www.swellinfo.com/surf-forecast/davenport-california',
+                  'http://www.swellinfo.com/surf-forecast/santa-cruz-california']
+    spot_conditions = []
+    for spot in surf_spots:
+        spot_conditions.append(url_to_data(spot))
+    return spot_conditions
 
 
-address = 'http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw'
-soup = url_to_soup(address)
-
-
-
-
-"""
 if __name__ == "__main__":
     address = 'http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw'
-    soup = url_to_soup(address)
-    print soup
-"""
-
-"""
-#Create list of spots we want to check
-address = []
-address.append('http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw')
-address.append('http://www.swellinfo.com/surf-forecast/ocean-beach-california')
-address.append('http://www.swellinfo.com/surf-forecast/half-moon-bay-california')
-address.append('http://www.swellinfo.com/surf-forecast/pescadero-california')
-address.append('http://www.swellinfo.com/surf-forecast/davenport-california')
-address.append('http://www.swellinfo.com/surf-forecast/santa-cruz-california')
-"""
+    conditions = url_to_data(address)
+    for item in conditions:
+        print item
