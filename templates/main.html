@@ -6,20 +6,20 @@
 </head>
 <body>
 <h1>Surf Check - Hell Yeah!!!!</h1>
-<p>--------------------------------------------</p>
-<p> Norcal Surf is always epic, get out there </p>
-<p>--------------------------------------------</p>
+<li>--------------------------------------------
+<li> Norcal Surf is always epic, get out there 
+<li>--------------------------------------------
 {% for spot in spots %}
 	<div>
 	<h2>Swell Rerport for BlahBlahBlah</h2>
-	<p>---------------------------------------------</p>
-	<p>Day		AM 		PM</p>
-	<p>---------------------------------------------</p>
+	<li>---------------------------------------------
+	<li>Day		AM 		PM
+	<li>---------------------------------------------
 	{% for line in spot %}
-	<p>{{ line }}</p>
+	<li>{{ line }}
 	{% endfor %}
 	</div><br>
 {% endfor %}
-<p> Last update: {{ last_update }}
+<p> Last update: {{ last_update }} </p>
 </body>
 </html>
