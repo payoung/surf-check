@@ -1,18 +1,34 @@
 from flask import Flask, render_template, url_for
-from datetime import datetime
+import datetime
 from scraper import run_scraper
 
 
 app = Flask(__name__)
-LAST_SCRAPE = 0
+# Keep track of the time between scrapes to prevent uncessesarry requests
+LAST_SCRAPE = datetime.datetime.now()
+# Get an intial set of scaped data
+SPOT_CONDITIONS = run_scraper()
+print LAST_SCRAPE, SPOT_CONDITIONS
+# Intervals between scrapes
+DELTA = datetime.timedelta(hours=4)
+
+
+def get_cond_data():
+    """ Test """
+    global SPOT_CONDITIONS
+    now = datetime.datetime.now()
+    if now - LAST_SCRAPE > DELTA:
+        SPOT_CONDITIONS = run_scraper()
+    return SPOT_CONDITIONS
 
 
 @app.route('/')
 def surfs_up():
-    """ return surf forecast """
-    now = datetime.now()
-    if LAST_SCRAPE == 0:
-        spot_conditions = run_scraper()
+    """ 
+    Returns surf forecast.  If the scraped data is old (DELTA = 4 hours), then
+    new data is scraped.  Otherwise 
+    """
+    spot_conditions = get_cond_data()
     return render_template('main.html', last_update=str(LAST_SCRAPE),
                            spots=spot_conditions)
 
