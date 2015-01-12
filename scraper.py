@@ -1,6 +1,6 @@
 import urllib2
 from bs4 import BeautifulSoup
-
+from collections import OrderedDict
 
 def parse_cond_attr(attribute):
     """ Parses the class attribute to get condition value """
@@ -40,20 +40,22 @@ def url_to_data(address):
 
 
 def run_scraper():
-    surf_spots = ['http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw',
-                  'http://www.swellinfo.com/surf-forecast/ocean-beach-california',
-                  'http://www.swellinfo.com/surf-forecast/half-moon-bay-california',
-                  'http://www.swellinfo.com/surf-forecast/pescadero-california',
-                  'http://www.swellinfo.com/surf-forecast/davenport-california',
-                  'http://www.swellinfo.com/surf-forecast/santa-cruz-california']
-    spot_conditions = []
-    for spot in surf_spots:
-        spot_conditions.append(url_to_data(spot))
+    surf_spots = ['Ocean Beach North', 'Ocean Beach South', 'Half Moon Bay', 
+                  'Pescadero', 'Davenport', 'Santa Cruz']
+    surf_urls = ['http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw',
+                 'http://www.swellinfo.com/surf-forecast/ocean-beach-california',
+                 'http://www.swellinfo.com/surf-forecast/half-moon-bay-california',
+                 'http://www.swellinfo.com/surf-forecast/pescadero-california',
+                 'http://www.swellinfo.com/surf-forecast/davenport-california',
+                 'http://www.swellinfo.com/surf-forecast/santa-cruz-california']
+    spot_conditions = OrderedDict()
+    for i in range(len(surf_spots)):
+        spot_conditions[surf_spots[i]] = url_to_data(surf_urls[i])
     return spot_conditions
 
 
 if __name__ == "__main__":
-    address = 'http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw'
-    conditions = url_to_data(address)
-    for item in conditions:
+    ADDR = 'http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw'
+    TEST_COND = url_to_data(ADDR)
+    for item in TEST_COND:
         print item

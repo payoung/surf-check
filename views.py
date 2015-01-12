@@ -4,16 +4,16 @@ from scraper import run_scraper
 
 
 app = Flask(__name__)
-last_update = 0
+LAST_SCRAPE = 0
 
 
 @app.route('/')
 def surfs_up():
     """ return surf forecast """
     now = datetime.now()
-    if last_update == 0:
+    if LAST_SCRAPE == 0:
         spot_conditions = run_scraper()
-    return render_template('main.html', last_update=str(last_update),
+    return render_template('main.html', last_update=str(LAST_SCRAPE),
                            spots=spot_conditions)
 
 

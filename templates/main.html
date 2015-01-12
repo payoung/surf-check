@@ -9,13 +9,13 @@
 <li>--------------------------------------------
 <li> Norcal Surf is always epic, get out there 
 <li>--------------------------------------------
-{% for spot in spots %}
+{% for spot, conditions in spots.iteritems() %}
 	<div>
-	<h2>Swell Rerport for BlahBlahBlah</h2>
+	<h2>Swell Rerport for {{ spot }}</h2>
 	<li>---------------------------------------------
 	<li>Day		AM 		PM
 	<li>---------------------------------------------
-	{% for line in spot %}
+	{% for line in conditions %}
 	<li>{{ line }}
 	{% endfor %}
 	</div><br>
