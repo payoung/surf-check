@@ -14,7 +14,12 @@ DELTA = datetime.timedelta(hours=4)
 
 
 def get_cond_data():
-    """ Test """
+    """ 
+    Returns a dictionary of spot conditions. Uses a global to save the forecast
+    data between requests.  If the app has just been initialized, it will run
+    the scrpaer, ohterwise, it will re-run the scraper if the last scrape is 
+    over 4 hours old.
+    """
     global SPOT_CONDITIONS
     now = datetime.datetime.now()
     if now - LAST_SCRAPE > DELTA:
@@ -24,10 +29,7 @@ def get_cond_data():
 
 @app.route('/')
 def surfs_up():
-    """ 
-    Returns surf forecast.  If the scraped data is old (DELTA = 4 hours), then
-    new data is scraped.  Otherwise 
-    """
+    """ Returns surf forecast. """
     spot_conditions = get_cond_data()
     return render_template('main.html', last_update=str(LAST_SCRAPE),
                            spots=spot_conditions)

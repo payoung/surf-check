@@ -2,6 +2,7 @@ import urllib2
 from bs4 import BeautifulSoup
 from collections import OrderedDict
 
+
 def parse_cond_attr(attribute):
     """ Parses the class attribute to get condition value """
     if "cond1" in attribute:
@@ -17,6 +18,7 @@ def parse_cond_attr(attribute):
 
 
 def url_to_data(address):
+    """ Returns surf condition data from web page using bs4 """
     html = urllib2.urlopen(address).read()
     soup = BeautifulSoup(html)
     panel_divs = soup.findAll("div", {"class":"AccordionPanel"})
@@ -40,6 +42,7 @@ def url_to_data(address):
 
 
 def run_scraper():
+    """ Runs through the list of spots and gets the scrapped data for each """
     surf_spots = ['Ocean Beach North', 'Ocean Beach South', 'Half Moon Bay', 
                   'Pescadero', 'Davenport', 'Santa Cruz']
     surf_urls = ['http://www.swellinfo.com/surf-forecast/ocean-beach-california-nw',
