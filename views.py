@@ -20,10 +20,11 @@ def get_cond_data():
     the scrpaer, ohterwise, it will re-run the scraper if the last scrape is 
     over 4 hours old.
     """
-    global SPOT_CONDITIONS
+    global SPOT_CONDITIONS, LAST_SCRAPE
     now = datetime.datetime.now()
     if now - LAST_SCRAPE > DELTA:
         SPOT_CONDITIONS = run_scraper()
+        LAST_SCRAPE = now
     return SPOT_CONDITIONS
 
 
