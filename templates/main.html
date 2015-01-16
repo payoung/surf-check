@@ -12,12 +12,20 @@
 {% for spot, conditions in spots.iteritems() %}
 	<div>
 	<h2>Swell Rerport for {{ spot }}</h2>
-	<li>---------------------------------------------
-	<li>Day		AM 		PM
-	<li>---------------------------------------------
+	<table>
+	<tr>
+	  <th>Day</th>
+	  <th>AM</th>
+	  <th>PM</th>
+	</tr>
 	{% for line in conditions %}
-	<li>{{ line }}
+	<tr>
+	  {% for item in line %}
+	  <td>{{ item }}</td>
+	  {% endfor %}
+	</tr>
 	{% endfor %}
+	</table>
 	</div><br>
 {% endfor %}
 <p> Last update: {{ last_update }} </p>

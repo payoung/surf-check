@@ -31,12 +31,7 @@ def url_to_data(address):
         pm_cond = parse_cond_attr(tds[1].get("class")[0])
         am_swell = tds[0].contents[0]
         pm_swell = tds[1].contents[0]
-        if day in ["Saturday", "Tuesday", "Wednesday"]:
-            cond_str = (day + ":\t" + am_swell + " " + am_cond + "\t" + 
-                        pm_swell + " " + pm_cond)
-        else:
-            cond_str = (day + ":\t\t" + am_swell + " " + am_cond + "\t" + 
-                        pm_swell + " " + pm_cond)
+        cond_str = [day, am_swell + " " + am_cond, pm_swell + " " + pm_cond]
         conditions.append(cond_str)
     return conditions
 

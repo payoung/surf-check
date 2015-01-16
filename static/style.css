@@ -1,2 +1,7 @@
-body	{ font-family: monospace; background: #000000; }
-p, h1, h2, li	{ color: #008000;}
+body			{ font-family: monospace; background: #000000; }
+
+p, h1, h2, li	{ color: #008000; }
+
+table, th, td 	{ border: 1px dashed green; }
+
+th 				{ text-align: center;}
