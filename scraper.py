@@ -49,6 +49,7 @@ def run_scraper():
     spot_conditions = OrderedDict()
     for i in range(len(surf_spots)):
         spot_conditions[surf_spots[i]] = url_to_data(surf_urls[i])
+    print "Scraper succesfully run."
     return spot_conditions
 
 
