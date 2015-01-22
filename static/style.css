@@ -4,4 +4,6 @@ p, h1, h2, li	{ color: #008000; }
 
 table, th, td 	{ border: 1px dashed green; border-collapse: collapse; }
 
-th 				{ text-align: center;}
+th 				{ text-align: center; }
+
+th,td 			{ padding: 3px; }
