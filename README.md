@@ -6,7 +6,7 @@ Installation
 ------------
 After cloning the repo, setup the virtual environment in the project directory with `virtualenv .` and activate it with `. bin/activate`.  If you have pip, install the dependencies using `pip install -r requirements.txt`.  Run the application with `python views.py`
 
-Other Notes
+Additional Notes
 -----------
 To prevent over-scraping, I limit the scrapes to when a request is made to the Flask server.  I keep the data in a cache for a few hours (the forecast data is only good for ~6-12 hours before it becomes obsolete), so that additional page requests will load fairly quickly, and this further limits the number of times I have to scrape the forecast website.  The downside to this approach is that the first request can take up to 10 seconds to load because it has to wait for the scraping to complete (as I mentioned earlier, the pages are pretty bulky).
 
